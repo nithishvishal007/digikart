@@ -25,8 +25,6 @@ import com.niit.model.Product;
 import com.niit.model.Supplier;
 import com.niit.model.User;
 
-
-
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.niit")
@@ -62,6 +60,7 @@ public class DBConfig {
 	            localsessionFactorybuilder.addAnnotatedClass(Cart.class);
 	            localsessionFactorybuilder.addAnnotatedClass(OrderDetail.class);
 	            localsessionFactorybuilder.addAnnotatedClass(CartItem.class);
+	            localsessionFactorybuilder.addAnnotatedClass(Orders.class);
 	            
 	            
 

@@ -1,10 +1,16 @@
-/*package com.ecom.controller;
+package com.ecom.controller;
 
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.niit.dao.CartDAO;
 import com.niit.dao.OrderDAO;
+import com.niit.dao.ProductDAO;
+import com.niit.model.Cart;
+import com.niit.model.CartItem;
+import com.niit.model.OrderDetail;
+import com.niit.model.Product;
 
 @Controller
 public class OrderController {
@@ -23,6 +34,8 @@ public class OrderController {
 	@Autowired
 	OrderDAO orderDAO;
 	
+	@Autowired
+	ProductDAO productDAO;
 	@RequestMapping(value="/payment")
 	public String showPaymentPage()
 	{
@@ -30,11 +43,14 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/paymentprocess",method=RequestMethod.POST)
-	public String paymentProcess(@RequestParam("pmode")String pmode,HttpSession session,Model m)
+	public String paymentProcess(@RequestParam("pmode")String pmode,HttpSession session,Model m,@AuthenticationPrincipal Principal principal)
 	{
 		String username=(String)session.getAttribute("username");
-		
+		String email=principal.getName();
+
 		List<CartItem> listCartItems=cartDAO.retrieveCartItems(username);
+		
+			
 		m.addAttribute("cartItems",listCartItems);
 		m.addAttribute("grandTotal",this.calcGrandTotalValue(listCartItems));
 		
@@ -46,10 +62,28 @@ public class OrderController {
 		
 		orderDAO.insertOrderDetail(orderDetail);
 		
+		for (CartItem cartItem : listCartItems) 
+		{
+			Product product=productDAO.getProductById(cartItem.getProductId());
+			product.setQuantity(product.getQuantity()-cartItem.getQuantity());
+			productDAO.updateProduct(product);
+			cartDAO.deleteCartItem(cartItem);
+		}
+		List<OrderDetail> currentOrder=new ArrayList<OrderDetail>();
+		List<OrderDetail> listorderdetails=orderDAO.retrieveOrderDetail(username);
+		for(OrderDetail od:listorderdetails)
+		{
+			Date d1=od.getOrderDate();
+			Date d2=new Date();
+			if(d1.getDate()==d2.getDate())
+				currentOrder.add(od);
+		}
 		System.out.println("OrderDetail have been saved");
-		
+		m.addAttribute("listorder",listorderdetails);
+		m.addAttribute("TodaysOrder",currentOrder);
 		return "ThankYou";
 	}
+	
 	
 	public long calcGrandTotalValue(List<CartItem> listCartItems)
 	{
@@ -63,6 +97,12 @@ public class OrderController {
 		
 		return grandTotalPrice;
 	}
-
+@RequestMapping(value="/myyorder")
+public String MyOrderProcess(@RequestParam("pmode")String pmode,HttpSession session,Model m)
+{
+String username=(String)session.getAttribute("username");
+List<CartItem> listCartItems=cartDAO.retrieveCartItems(username);
+m.addAttribute("listCartItem",listCartItems);
+return null;
 }
-*/
+}

@@ -7,9 +7,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>After payment</title>
 </head>
 <body>
 <h2>Thank You</h2>
+<table>
+<c:forEach items="${TodaysOrder}" var="ord">
+<tr>
+<td>Order Id:${ord.orderId}</td>
+
+</tr>
+</c:forEach>
+</table>
+
 </body>
 </html>

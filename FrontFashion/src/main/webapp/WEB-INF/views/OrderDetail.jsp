@@ -14,7 +14,7 @@
 </tr>
 <c:forEach items="${cartItems}" var="cartItem">
 <tr>
-	<td>${cartItem.productName}</td>
+	<td>${cartItem.productname}</td>
 	<td>${cartItem.price}</td>
 	<td><input type="text" value="${cartItem.quantity}" name="qty" required/></td>
 	<td>${cartItem.quantity * cartItem.price}</td>

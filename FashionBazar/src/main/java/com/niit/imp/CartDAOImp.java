@@ -12,13 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.dao.CartDAO;
 import com.niit.model.CartItem;
 
-@Repository("cartDao")
+@Repository("cartDAO")
 @Transactional
 public class CartDAOImp implements CartDAO 
 {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	  public CartDAOImp(SessionFactory sessionFactory)
+	    {
+	    	this.sessionFactory=sessionFactory;
+	    }
 	
 	@Override
 	public boolean addCartItem(CartItem cartItem) 

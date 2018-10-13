@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.niit.test.CategoryDAOTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 5.918 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 19.904 sec

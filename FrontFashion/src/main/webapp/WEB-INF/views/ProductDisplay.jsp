@@ -7,24 +7,24 @@
 </tr>
 <tr>
 	<td rowspan="9">
-			<img src="<c:url value="/resources/images/${productInfo.productid}.jpg"/>" width="300" height="200"/>
+			<img src="<c:url value="/resources/images/images${productInfo.productid}.jpg"/>" width="300" height="400"/>
 	</td>
 </tr>
 <tr>
 	<td>Product ID</td>
-	<td>${productInfo.producid}</td>
+	<td>${productInfo.productid}</td>
 </tr>
 <tr>
 	<td>Product Name</td>
 	<td>${productInfo.productname}</td>
 </tr>
 <tr>
-	<td>Supplier ID</td>
-	<td>${productInfo.supplierid}</td>
+	<td>Supplier Name</td>
+	<td>${supplierName}</td>
 </tr>
 <tr>
 	<td>Category</td>
-	<td>${categoryname}</td>
+	<td>${categoryName}</td>
 </tr>
 <tr>
 	<td>Price</td>
@@ -32,13 +32,13 @@
 </tr>
 <tr>
 	<td>Stock</td>
-	<td>${productInfo.Quantity}</td>
+	<td>${productInfo.quantity}</td>
 </tr>
 <tr>
 	<td>Product Description</td>
 	<td>${productInfo.productDesc}</td>
 </tr>
-<form action="<c:url value="/addToCart/${productInfo.productid}"/>" method="get">
+<form action="<c:url value="/addToCart/${productInfo.productid}" />" method="get">
 <tr>
 	<td>Quantity</td>
 	<td><input type="text" name="qty" required/></td>

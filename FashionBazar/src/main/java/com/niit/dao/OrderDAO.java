@@ -1,7 +1,14 @@
 package com.niit.dao;
 
-import com.niit.model.Orders;
+import java.util.List;
+
+import com.niit.model.CartItem;
+import com.niit.model.OrderDetail;
+
 
 public interface OrderDAO {
- void addOrder(Orders order);
+
+
+	public boolean insertOrderDetail(OrderDetail orderDetail);
+	public List<OrderDetail> retrieveOrderDetail(String username) ;
 }

@@ -8,12 +8,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Orders {
-	@Id
-	@GeneratedValue
+@Id
+@GeneratedValue
 private int orderId;
-	
-	@ManyToOne
-	@JoinColumn(name="userid")
+@ManyToOne
+@JoinColumn(name="userid")
 private User user;
 private String payment;
 private Double total;

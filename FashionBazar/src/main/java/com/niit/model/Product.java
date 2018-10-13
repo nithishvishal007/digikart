@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 @Entity
@@ -18,11 +20,15 @@ public class Product {
 	@Column(name="PRODUCT_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int  productid;
+	@NotEmpty(message="Product name cannot be empty")
 	private String productname;
+	@NotEmpty(message="product description is mandatory")
 	private String productDesc;
+	@Min(value=1, message=" minimum value for price is 1" )
     private int price;
 	private int categoryid;
 	private int supplierid;
+	@Min(value=0, message="minimum value cannot be less than zero")
 	private int quantity;
 
 	@Transient
@@ -92,7 +98,9 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	
+	public String toString() {
+	return "Product [productname="+productname+", productDesc="+productDesc+",price="+price+",Quantity="+quantity+"]";	
+	}
 	
 	
 

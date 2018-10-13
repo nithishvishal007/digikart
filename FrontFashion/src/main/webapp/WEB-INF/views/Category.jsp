@@ -1,4 +1,5 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+	<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"/\
     pageEncoding="ISO-8859-1"%>--%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
    <%@include file="Header.jsp" %>
@@ -19,11 +20,13 @@
 </tr>
 <tr>
 <td>Category Name</td>
-<td><input type="text" name="categoryName"/></td>
+<td><input type="text" name="categoryName" required/></td>
+<!--<form:errors path="categoryName" cssStyle="color:red"></form:errors>-->
 </tr>
 <tr>
 <td>Category Description</td>
-<td><input type="text" name="categoryDesc"/></td>
+<td><input type="text" name="categoryDesc" required/></td>
+<!--<form:errors path="categoryDesc" cssStyle="color:red"></form:errors>-->
 </tr>
 <tr>
 <td colspan="2"><center>

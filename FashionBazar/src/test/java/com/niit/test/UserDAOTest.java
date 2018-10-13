@@ -26,7 +26,7 @@ public class UserDAOTest {
 	public void registerUserTest()
 	{
 		User user=new User();
-		user.setUsername("abi1");
+		user.setUsername("abi");
 		user.setCustomername("Za");
 		user.setEmailId("zabe@gmail.com");
 		user.setEnabled("no");

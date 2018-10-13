@@ -13,7 +13,7 @@ public class CartItem {
 	@GeneratedValue
 	int cartItemId;
 	int productId;
-	String productName;
+	String productname;
 	int price;
 	int quantity;
 	String username;
@@ -30,11 +30,12 @@ public class CartItem {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getProductName() {
-		return productName;
+	
+	public String getProductname() {
+		return productname;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
 	public int getPrice() {
 		return price;

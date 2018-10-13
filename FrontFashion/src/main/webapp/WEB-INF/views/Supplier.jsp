@@ -15,14 +15,14 @@
 </tr>
 <tr>
 <td>Supplier Name</td>
-<td> <input type="text" name="suppliername"/></td>
+<td> <input type="text" name="suppliername" required/></td>
 </tr>
 <tr>
 <td>Address</td>
-<td> <input type="text" name="address"/></td>
+<td> <input type="text" name="address" required/></td>
 </tr>
 <tr>
-<td colspan="2"><input type="submit" value="Enter Supplier"/></td></tr>
+<td colspan="2"><input type="submit" value="Enter Supplier" required/></td></tr>
 </table>
 </form>
 <table align="center" class="table-bordered">

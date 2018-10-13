@@ -17,7 +17,7 @@
 <body>
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 			<!-- Brand/logo -->
-					<a class="navbar-brand" href="#">Digikart</a>
+					<a class="navbar-brand" href="#">DigitalKart</a>
 				
 
 				<!-- Links -->
@@ -37,7 +37,7 @@
 					<a class="nav-link" href="contactus">Contact Us</a>
 					</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right"><li class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right"><li>
 					
 					<a class="nav-link" href="Login"><span class="glyphicon glyphicon-log-in">Login</a>
 					</li></ul>
@@ -46,16 +46,17 @@
 					<c:if test="${sessionScope.loggedIn}">
 					<c:if  test="${sessionScope.role=='ROLE_USER'}">
 					<ul class="nav navbar-nav">
-					<li><a href="#">Home</a>
-					<li><a href="<c:url value="/productCatalog"/>">Product Catalog</a></li>
-					<li><a href="<c:url value="/ProductDisplay"/>">Product Display</a></li>
-					<li><a href="<c:url value="/cart"/>">Cart</a>
+					<li  class="nav-item"><a href="home">Home</a>&nbsp&nbsp&nbsp&nbsp
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/productCatalog"/>">Product Catalog</a></li>&nbsp&nbsp&nbsp&nbsp
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/ProductDisplay"/>">Product Display</a></li>&nbsp&nbsp&nbsp&nbsp 
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/cart"/>">My Cart</a> &nbsp&nbsp&nbsp&nbsp
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/myyorder"/>">My Order</a> &nbsp&nbsp&nbsp&nbsp
 					</li>
 					</ul>
 					<c:if test="${sessionScope.loggedIn}">
 					<ul class="nav navbar-nav navbar-right">
-					<li><a class="nav-link">Hi ${sessionScope.username}</a></li>
-					<li >
+					<li class="nav-item"><a class="nav-link">Hi ${sessionScope.username}</a></li>
+					<li>
 					<a class="nav-link" href="perform_logout">Logout</a>
 					</li></ul>
 					</c:if>
@@ -65,17 +66,17 @@
                 <c:if test="${sessionScope.loggedIn}">
 				<c:if  test="${sessionScope.role=='admin'}">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Home</a>
-					<li><a href="category">Manage Category</a></li>
-					<li><a href="product">Manage Product</a></li>
+					<li><a href="home">Home</a>&nbsp&nbsp&nbsp&nbsp
+					<li><a href="category">Manage Category</a></li>&nbsp&nbsp&nbsp&nbsp
+					<li><a href="product">Manage Product</a></li>&nbsp&nbsp&nbsp&nbsp
 					 <li class="nav-item">
-					<a class="nav-link" href="supplier">Manage Supplier</a>
+					<a class="nav-item" href="supplier">Manage Supplier</a>&nbsp&nbsp&nbsp&nbsp
 					</li>
-					<li><a href="<c:url value="/ProductDisplay"/>">Product Display</a></li>
+					<li><a href="<c:url value="/ProductDisplay"/>">Product Display</a></li>&nbsp&nbsp&nbsp&nbsp
 					</ul>
-					<ul><li class="nav navbar-nav navbar-right">
-					
-					<a class="nav-link" href="perform_logout">LogOut</a>
+					<li><a href="<c:url value="/cart"/>">My Cart</a></li>&nbsp&nbsp&nbsp&nbsp
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/myyorder"/>">My Order</a> &nbsp&nbsp&nbsp&nbsp
+					<li><a class="nav-item" href="perform_logout">LogOut</a>
 					</li></ul>
 				</c:if>	
 				</c:if>				

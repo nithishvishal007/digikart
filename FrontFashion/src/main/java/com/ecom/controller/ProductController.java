@@ -6,7 +6,8 @@ import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.hibernate.cfg.beanvalidation.IntegrationException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class ProductController {
 	
 	boolean flag=true;
 	
-	@RequestMapping(value="/product")
+	@RequestMapping(value="/product",method=RequestMethod.GET)
 	public String showManageProduct(Model m)
 	{
 		Product product=new Product();
@@ -49,20 +50,43 @@ public class ProductController {
 		List<Category> categoryList=categoryDAO.listCategory();
 		m.addAttribute("categoryList", this.getCategoryList(categoryList));
 		
+		List<Supplier> supplierList=supplierDAO.listSupplier();
+		m.addAttribute("supplierList", this.getSupplierList(supplierList));
+		
+		
 		flag=true;
 		m.addAttribute("flag", flag);
 		return "Product";
 	}
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product")Product product,@RequestParam("pimage") MultipartFile fileDetail,Model m,BindingResult result)
+	public String addProduct(@Valid @ModelAttribute("product")Product product,@RequestParam("pimage") MultipartFile fileDetail,Model m,BindingResult result)
 	{
-		
+		if(result.hasErrors())
+		{
+			
+//			m.addAttribute("product",product);
+//		
+			List<Product> productList=productDAO.listProduct();
+			m.addAttribute("productList", productList);
+			
+			List<Category> categoryList=categoryDAO.listCategory();
+			m.addAttribute("categoryList", this.getCategoryList(categoryList));
+			
+			List<Supplier> supplierList=supplierDAO.listSupplier();
+			m.addAttribute("supplierList", this.getSupplierList(supplierList));
+			
+			
+			flag=true;
+			m.addAttribute("flag", flag);
+			return "Product";
+			
+		}
 		productDAO.addProduct(product);
 		
 		//=> Image Uploading Started
 		
-		String imagePath="C:\\Users\\abdul\\eclipse-workspace\\FrontFashion\\src\\main\\webapp\\WEB-INF\\resources\\images";
+		String imagePath="F:\\New folder\\FrontFashion\\src\\main\\webapp\\WEB-INF\\resources";
 		imagePath=imagePath+String.valueOf(product.getProductid())+".jpg";
 		
 		File myFile=new File(imagePath);
@@ -104,6 +128,10 @@ public class ProductController {
 		List<Category> categoryList=categoryDAO.listCategory();
 		m.addAttribute("categoryList", this.getCategoryList(categoryList));
 		
+		List<Supplier> supplierList=supplierDAO.listSupplier();
+		m.addAttribute("supplierList", this.getSupplierList(supplierList));
+		
+		
 		flag=true;
 		m.addAttribute("flag", flag);
 		return "Product";
@@ -124,6 +152,9 @@ public class ProductController {
 		
 		List<Category> categoryList=categoryDAO.listCategory();
 		m.addAttribute("categoryList", this.getCategoryList(categoryList));
+		List<Supplier> supplierList=supplierDAO.listSupplier();
+		m.addAttribute("supplierList", this.getSupplierList(supplierList));
+		
 		
 		flag=true;
 		m.addAttribute("flag", flag);
@@ -188,6 +219,12 @@ public class ProductController {
 		Product product=(Product)productDAO.getProductById(productid);
 		m.addAttribute("productInfo",product);
 		m.addAttribute("categoryName",categoryDAO.getCategoryById(product.getCategoryid()).getCategoryName());
+		int i=product.getSupplierid();
+		Supplier s=supplierDAO.getSupplierById(i);
+		String supname=s.getSuppliername();
+		System.out.println(supname);
+		m.addAttribute("supplierName",supname);
+
 		return "ProductDisplay";
 	}
 	

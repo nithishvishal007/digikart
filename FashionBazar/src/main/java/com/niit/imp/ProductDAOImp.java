@@ -15,7 +15,7 @@ import com.niit.dao.ProductDAO;
 import com.niit.model.Product;
 
 @Repository("productDAO")
-@EnableTransactionManagement
+@Transactional
 public class ProductDAOImp implements ProductDAO{
 @Autowired
     private SessionFactory sessionFactory;

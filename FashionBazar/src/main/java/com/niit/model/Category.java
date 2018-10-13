@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -18,7 +19,9 @@ public class Category {
 	@Column(name="CATEGORY_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int categoryid;
+	//@NotEmpty(message="category name cannot be empty")
 	String categoryName;
+	//@NotEmpty(message="product description is empty")
 	String categoryDesc;
 	public int getCategoryid() {
 		return categoryid;

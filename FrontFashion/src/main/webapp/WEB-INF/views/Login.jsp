@@ -24,7 +24,7 @@
    </div>
     <form id="Login" action="<c:url value="/perform_login" ></c:url>" method="post">
     <div class="form-group">
-    <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="username" required>
+    <input type="text" class="form-control" id="inputEmail" placeholder="User Name" name="username" required>
      </div>
      <div class="form-group">
      <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required>
@@ -33,7 +33,7 @@
     <button type="submit" class="btn btn-primary" >Login</button> 
     </form>
     </div>
-    <p class="botto-text">A Website By Digikart</p>
+    <p class="botto-text">A website by Digitalkart</p>
      </div></div></div>
 
 

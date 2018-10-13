@@ -49,7 +49,7 @@ public class CartController {
 		String username=(String)session.getAttribute("username");
 		
 		cartItem.setProductId(product.getProductid());
-		cartItem.setProductName(product.getProductname());
+		cartItem.setProductname(product.getProductname());
 		cartItem.setPrice(product.getPrice());
 		cartItem.setQuantity(Quantity);
 		cartItem.setPstatus("NP");
@@ -82,6 +82,18 @@ public class CartController {
 	{
 		CartItem cartItem=cartDAO.getCartItem(cartItemId);
 		cartItem.setQuantity(quantity);
+		
+		Product product=productDAO.getProductById(cartItem.getProductId());
+		if ((product.getQuantity() - cartItem.getQuantity()) < 0) {
+			
+//		CartItem ct=cartDAO.getCartItem(cartItem.getCartItemId());
+//			cartDAO.deleteCartItem(ct);
+
+			m.addAttribute("productNA", product);
+			return "productnotavailable";
+		}
+		else
+		{
 		cartDAO.updateCartItem(cartItem);
 		
 		String username=(String)session.getAttribute("username");
@@ -91,6 +103,7 @@ public class CartController {
 		m.addAttribute("grandTotal",this.calcGrandTotalValue(listCartItems));
 		
 		return "Cart";
+	}
 	}
 	
 	@RequestMapping(value="/deleteCartItem/{cartItemId}")
@@ -120,5 +133,4 @@ public class CartController {
 		
 		return "OrderDetail";
 	}
-
 }

@@ -5,8 +5,7 @@
 <form action="paymentprocess" method="post">
 <table align="center" width="40%" class="table table-bordered">
 	<tr bgcolor="orange"><td colspan="2">Payment Process </td></tr>
-	
-	<tr>
+<tr>
 		<td>Payment Mode </td>
 		<td>
 		<input type="radio" name="pmode" value="CC">Credit Card
@@ -14,8 +13,9 @@
 		</td>
 	</tr>
 	
+	
 	<tr bgcolor="orange">
-		<td>Credit Card </td>
+		<td>Credit Card</td>
 		<td><input type="text" name="ccard"/></td>
 	</tr>
 	
